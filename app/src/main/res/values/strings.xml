@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SalesApp</string>
+    <string name ="listing_title_hint"> Enter a title for the Post</string>
+    <string name ="listing_title_label"> Title </string>
+    <string name ="listing_details_label"> Details</string>
+    <string name ="listing_sold_label"> Sold </string>
+
+
+</resources>
