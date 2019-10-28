@@ -33,7 +33,7 @@ public class ListingFragment extends Fragment {
         mDateButton.setText(mListing.getmDate().toString());
         mDateButton.setEnabled(false);
 
-        mSoldCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSoldCheckBox = (CheckBox)v.findViewById(R.id.listing_sold);
         mSoldCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
