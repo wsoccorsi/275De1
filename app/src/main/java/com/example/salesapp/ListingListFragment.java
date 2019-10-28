@@ -14,6 +14,8 @@ import java.util.List;
 public class ListingListFragment extends Fragment {
     private RecyclerView mListingRecyclerView;
 
+    private ListingAdapter mAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View view = inflater.inflate(R.layout.fragment_listing_list, container, false);
@@ -21,9 +23,18 @@ public class ListingListFragment extends Fragment {
         mListingRecyclerView = (RecyclerView) view.findViewById(R.id.listing_recycler_view);
         mListingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        updateUI();
 
         return view;
     }
+    private void updateUI() {
+        ListingLab listingLab = ListingLab.get(getActivity());
+        List<Listing> listings = listingLab.getListings();
+
+        mAdapter = new ListingAdapter(listings);
+        mListingRecyclerView.setAdapter(mAdapter);
+    }
+
     private class ListingHolder extends RecyclerView.ViewHolder {
         public ListingHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_listing, parent, false));
@@ -52,5 +63,6 @@ public class ListingListFragment extends Fragment {
             return mListings.size();
         }
     }
+
 
 }

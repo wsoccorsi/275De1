@@ -7,4 +7,6 @@ public class ListingListActivity extends SingleFragmentActivity{
     protected Fragment createFragment() {
         return new ListingListFragment();
     }
+
+
 }

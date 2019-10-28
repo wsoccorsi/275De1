@@ -18,13 +18,17 @@ public class ListingLab {
         return sListingLab;
     }
 
-    public Listing getCrime(UUID id){
+    public Listing getListing(UUID id){
         for (Listing listing : mListings){
             if (listing.getmId().equals(id)){
                 return listing;
             }
         }
         return null;
+    }
+
+    public List<Listing> getListings() {
+        return mListings;
     }
 
     private ListingLab(Context context) {
