@@ -44,6 +44,7 @@ public class ListingListFragment extends Fragment {
 
     private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTitleTextView;
+        private TextView mDescTextView;
         private TextView mDateTextView;
         private ImageView mSoldImageView;
         private Listing mListing;
@@ -53,6 +54,7 @@ public class ListingListFragment extends Fragment {
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.listing_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.listing_date);
+            mDescTextView = (TextView) itemView.findViewById(R.id.listing_desc);
             mSoldImageView = (ImageView) itemView.findViewById(R.id.listing_sold);
 
         }
@@ -63,6 +65,7 @@ public class ListingListFragment extends Fragment {
             System.out.println(mListing.getmId());
 
             mTitleTextView.setText(mListing.getmTitle());
+            mDescTextView.setText(mListing.getmDesc());
             mDateTextView.setText(mListing.getmDate().toString());
             mSoldImageView.setVisibility(listing.ismSold() ? View.VISIBLE : View.GONE);
 

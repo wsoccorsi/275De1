@@ -12,6 +12,7 @@ public class Listing {
     private String mImagePath;
     private String mContactInformation;
     private String mTitle;
+    private String mDesc;
 
 
 
@@ -20,6 +21,13 @@ public class Listing {
         mDate = new Date();
     }
 
+    public String getmDesc() {
+        return mDesc;
+    }
+
+    public void setmDesc(String mDesc) {
+        this.mDesc = mDesc;
+    }
     public UUID getmId() {
         return mId;
     }

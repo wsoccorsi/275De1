@@ -33,10 +33,12 @@ public class ListingLab {
 
     private ListingLab(Context context) {
         mListings = new ArrayList<>();
-        for (int i = 0; i < 100; i++){
+        for (int i = 1; i < 100; i++){
             Listing listing = new Listing();
             listing.setmTitle("Chair #" + i);
             listing.setmSold(i%2 ==0);
+            int chairBefore = i-1;
+            listing.setmDesc("This chair is better than chair " + chairBefore);
             mListings.add(listing);
         }
     }
