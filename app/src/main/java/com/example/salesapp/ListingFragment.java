@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,9 +20,12 @@ import java.util.UUID;
 public class ListingFragment extends Fragment {
 
     private Listing mListing;
-    private EditText mTitleField;
+    private TextView mTitleField;
     private Button mDateButton;
     private CheckBox mSoldCheckBox;
+    private TextView mSold;
+    private TextView mDesc;
+    private TextView mPrice;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,10 +37,22 @@ public class ListingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_listing, container, false);
         mDateButton = (Button) v.findViewById(R.id.listing_date);
-        mDateButton.setText(mListing.getmDate().toString());
+        mDateButton.setText("Posted: " + mListing.getmDate().toString());
         mDateButton.setEnabled(false);
 
+        mDesc = (TextView) v.findViewById(R.id.listing_desc);
+        mDesc.setText("  Desc: " + mListing.getmDesc());
+
+        mPrice = (TextView) v.findViewById(R.id.listing_price);
+        mPrice.setText("  Price " + mListing.getmPrice());
+
+        mSold = (TextView) v.findViewById(R.id.listing_textSold);
         mSoldCheckBox = (CheckBox)v.findViewById(R.id.listing_sold);
+        if (mListing.ismSold()) {
+            mSold.setText("  Status: Sorry this item has been sold");
+        } else {
+            mSold.setText("  Status: This item is still for sale");
+        }
         mSoldCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -44,8 +60,8 @@ public class ListingFragment extends Fragment {
             }
         });
 
-        mTitleField = (EditText) v.findViewById(R.id.listing_title);
-        mTitleField.setText(mListing.getmTitle());
+        mTitleField = (TextView) v.findViewById(R.id.listing_title);
+        mTitleField.setText("  " + mListing.getmTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

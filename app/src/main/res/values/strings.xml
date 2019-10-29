@@ -4,6 +4,9 @@
     <string name ="listing_title_label"> Title </string>
     <string name ="listing_details_label"> Details</string>
     <string name ="listing_sold_label"> Sold </string>
+    <string name ="listing_desc_label"> Desc </string>
+    <string name ="listing_price_label"> Desc </string>
+
 
 
 </resources>
