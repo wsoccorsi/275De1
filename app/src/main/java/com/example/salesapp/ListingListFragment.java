@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,13 +39,14 @@ public class ListingListFragment extends Fragment {
         mListingRecyclerView.setAdapter(mAdapter);
     }
 
-    private class ListingHolder extends RecyclerView.ViewHolder {
+    private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private Listing mListing;
+
         public ListingHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_listing, parent, false));
-
+            itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.listing_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.listing_date);
 
@@ -61,6 +63,10 @@ public class ListingListFragment extends Fragment {
 
 
 
+        }
+        @Override
+        public void onClick(View view){
+            Toast.makeText(getActivity(), mListing.getmTitle() + "clicked!", Toast.LENGTH_SHORT).show();
         }
     }
 
