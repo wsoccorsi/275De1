@@ -35,7 +35,7 @@ public class ListingLab {
         mListings = new ArrayList<>();
         for (int i = 0; i < 100; i++){
             Listing listing = new Listing();
-            listing.setmTitle("Listing #" + i);
+            listing.setmTitle("Chair #" + i);
             listing.setmSold(i%2 ==0);
             mListings.add(listing);
         }

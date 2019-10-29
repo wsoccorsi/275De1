@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
-public abstract class MainActivity extends SingleFragmentActivity {
+public class MainActivity extends SingleFragmentActivity {
 
 
     @Override
