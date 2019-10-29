@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.UUID;
+
 public class ListingFragment extends Fragment {
 
     private Listing mListing;
@@ -23,7 +25,8 @@ public class ListingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mListing = new Listing();
+        UUID listingId = (UUID) getActivity().getIntent().getSerializableExtra(MainActivity.EXTRA_CRIME_ID);
+        mListing = ListingLab.get(getActivity()).getListing(listingId);
     }
 
     @Override
@@ -42,6 +45,7 @@ public class ListingFragment extends Fragment {
         });
 
         mTitleField = (EditText) v.findViewById(R.id.listing_title);
+        mTitleField.setText(mListing.getmTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

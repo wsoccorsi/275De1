@@ -70,7 +70,7 @@ public class ListingListFragment extends Fragment {
         }
         @Override
         public void onClick(View view){
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = MainActivity.newIntent(getActivity(), mListing.getmId());
             startActivity(intent);
         }
     }
@@ -90,8 +90,6 @@ public class ListingListFragment extends Fragment {
         @Override
         public void onBindViewHolder(ListingHolder holder, int position){
             Listing listing = mListings.get(position);
-            System.out.println("HERERERE");
-            System.out.println(listing.getmId());
             holder.bind(listing);
         }
 
