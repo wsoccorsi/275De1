@@ -3,6 +3,7 @@ package com.example.salesapp;
 
 import android.content.Context;
 
+import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +39,9 @@ public class ListingLab {
             listing.setmTitle("Chair #" + i);
             listing.setmSold(i%2 ==0);
             int chairBefore = i-1;
+            int price = i*2;
             listing.setmDesc("This chair is better than chair " + chairBefore);
+            listing.setmPrice("$" + price);
             mListings.add(listing);
         }
     }

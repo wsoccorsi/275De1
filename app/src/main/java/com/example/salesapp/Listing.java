@@ -8,7 +8,7 @@ public class Listing {
     private Item item;
     private Date mDate;
     private boolean mSold;
-    private Integer mPrice;
+    private String mPrice;
     private String mImagePath;
     private String mContactInformation;
     private String mTitle;
@@ -62,11 +62,11 @@ public class Listing {
         this.mSold = mSold;
     }
 
-    public Integer getmPrice() {
+    public String getmPrice() {
         return mPrice;
     }
 
-    public void setmPrice(Integer mPrice) {
+    public void setmPrice(String mPrice) {
         this.mPrice = mPrice;
     }
 

@@ -46,6 +46,8 @@ public class ListingListFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mDescTextView;
         private TextView mDateTextView;
+        private TextView mPriceTextView;
+
         private ImageView mSoldImageView;
         private Listing mListing;
 
@@ -55,6 +57,7 @@ public class ListingListFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.listing_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.listing_date);
             mDescTextView = (TextView) itemView.findViewById(R.id.listing_desc);
+            mPriceTextView = (TextView) itemView.findViewById(R.id.listing_price);
             mSoldImageView = (ImageView) itemView.findViewById(R.id.listing_sold);
 
         }
@@ -66,6 +69,7 @@ public class ListingListFragment extends Fragment {
 
             mTitleTextView.setText(mListing.getmTitle());
             mDescTextView.setText(mListing.getmDesc());
+            mPriceTextView.setText(mListing.getmPrice());
             mDateTextView.setText(mListing.getmDate().toString());
             mSoldImageView.setVisibility(listing.ismSold() ? View.VISIBLE : View.GONE);
 
