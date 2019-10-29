@@ -1,9 +1,11 @@
 package com.example.salesapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class ListingListFragment extends Fragment {
     private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTitleTextView;
         private TextView mDateTextView;
+        private ImageView mSoldImageView;
         private Listing mListing;
 
         public ListingHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -49,7 +52,7 @@ public class ListingListFragment extends Fragment {
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.listing_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.listing_date);
-
+            mSoldImageView = (ImageView) itemView.findViewById(R.id.listing_sold);
 
         }
 
@@ -60,7 +63,7 @@ public class ListingListFragment extends Fragment {
 
             mTitleTextView.setText(mListing.getmTitle());
             mDateTextView.setText(mListing.getmDate().toString());
-
+            mSoldImageView.setVisibility(listing.ismSold() ? View.VISIBLE : View.GONE);
 
 
         }
