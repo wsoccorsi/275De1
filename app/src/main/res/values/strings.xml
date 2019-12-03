@@ -6,6 +6,11 @@
     <string name ="listing_sold_label"> Sold </string>
     <string name ="listing_desc_label"> Desc </string>
     <string name ="listing_price_label"> Desc </string>
+    <string name ="new_listing"> New Listing </string>
+    <string name ="show_subtitle"> Show Subtitle </string>
+    <string name ="hide_subtitle"> Hide Subtitle </string>
+    <string name ="subtitle_format"> 1$d listings </string>
+
 
 
 
