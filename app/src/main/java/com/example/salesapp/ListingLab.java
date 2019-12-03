@@ -28,22 +28,27 @@ public class ListingLab {
         return null;
     }
 
+    public void addListing(Listing l){
+        mListings.add(l);
+    }
+
     public List<Listing> getListings() {
         return mListings;
     }
 
     private ListingLab(Context context) {
         mListings = new ArrayList<>();
-        for (int i = 1; i < 100; i++){
-            Listing listing = new Listing();
-            listing.setmTitle("Chair #" + i);
-            listing.setmSold(i%2 ==0);
-            int chairBefore = i-1;
-            int price = i*2;
-            listing.setmDesc("This chair is better than chair " + chairBefore);
-            listing.setmPrice("$" + price);
-            mListings.add(listing);
-        }
+
+//        for (int i = 1; i < 100; i++){
+//            Listing listing = new Listing();
+//            listing.setmTitle("Chair #" + i);
+//            listing.setmSold(i%2 ==0);
+//            int chairBefore = i-1;
+//            int price = i*2;
+//            listing.setmDesc("This chair is better than chair " + chairBefore);
+//            listing.setmPrice("$" + price);
+//            mListings.add(listing);
+//        }
     }
 
 }
