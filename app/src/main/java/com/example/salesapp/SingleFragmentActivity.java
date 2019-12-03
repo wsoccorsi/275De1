@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
