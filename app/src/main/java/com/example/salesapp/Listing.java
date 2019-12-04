@@ -24,7 +24,7 @@ public class Listing {
     public Listing(UUID id ){
         mId = id;
         mDesc = "";
-        mPrice = "$";
+        mPrice = "";
         mTitle = "";
         mDate = new Date();
     }

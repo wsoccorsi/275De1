@@ -25,6 +25,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:text="Listing Date"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listing_title" />
 
@@ -35,6 +36,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
+
         android:text="Listing Desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listing_date" />

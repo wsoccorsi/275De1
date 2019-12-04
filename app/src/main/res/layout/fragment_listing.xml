@@ -29,6 +29,7 @@
         android:id="@+id/listing_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="@string/listing_desc_label"
         android:hint="Enter Description"/>
 

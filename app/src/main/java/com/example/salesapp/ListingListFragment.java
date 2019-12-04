@@ -184,10 +184,10 @@ public class ListingListFragment extends Fragment {
 
             mListing = listing;
             System.out.println("on screen date " + mListing.getmDate() + "on screen id " + mListing.getmId() );
-            mTitleTextView.setText(mListing.getmTitle());
-            mDescTextView.setText(mListing.getmDesc());
-            mPriceTextView.setText(mListing.getmPrice());
-            mDateTextView.setText(mListing.getmDate().toString());
+            mTitleTextView.setText("Title: " + mListing.getmTitle());
+            mDescTextView.setText("Desc: " + mListing.getmDesc());
+            mPriceTextView.setText("Price: $" + mListing.getmPrice());
+            mDateTextView.setText("Posted: " + mListing.getmDate().toString());
             mSoldImageView.setVisibility(listing.ismSold() ? View.VISIBLE : View.GONE);
 
 
