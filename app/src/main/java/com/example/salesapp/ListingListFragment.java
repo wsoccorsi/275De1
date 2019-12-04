@@ -26,6 +26,7 @@ public class ListingListFragment extends Fragment {
     private RecyclerView mListingRecyclerView;
     private ListingAdapter mAdapter;
     private boolean mSubtitleVisible;
+    private boolean mHiVisible;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class ListingListFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+        outState.putBoolean(SAVED_HI_VISIBLE, mHiVisible);
+
     }
 
     @Override
@@ -52,14 +55,24 @@ public class ListingListFragment extends Fragment {
 
 
         MenuItem subtitleItem = menu.findItem(R.id.show_subtitle);
+        MenuItem hiItem = menu.findItem(R.id.show_hi);
+
         if (mSubtitleVisible){
             subtitleItem.setTitle(R.string.hide_subtitle);
         } else {
             subtitleItem.setTitle(R.string.show_subtitle);
         }
 
+        if (mHiVisible){
+            hiItem.setTitle("Hide Hi");
+        } else {
+            hiItem.setTitle("Show Hi");
+        }
+
     }
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+    private static final String SAVED_HI_VISIBLE = "hi";
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
@@ -73,6 +86,11 @@ public class ListingListFragment extends Fragment {
                 mSubtitleVisible = !mSubtitleVisible;
                 getActivity().invalidateOptionsMenu();
                 updateSubtitle();
+                return true;
+            case R.id.show_hi:
+                mHiVisible = !mHiVisible;
+                getActivity().invalidateOptionsMenu();
+                updateHi();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -92,6 +110,18 @@ public class ListingListFragment extends Fragment {
         activity.getSupportActionBar().setSubtitle(subtitle);
 
     }
+    private void updateHi() {
+
+        String hello = "Hello";
+
+        if (!mHiVisible) {
+            hello = null;
+        }
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(hello);
+
+    }
 
 
     @Override
@@ -104,6 +134,11 @@ public class ListingListFragment extends Fragment {
         if (savedInstance != null) {
             mSubtitleVisible = savedInstance.getBoolean(SAVED_SUBTITLE_VISIBLE);
         }
+
+        if (savedInstance != null) {
+            mHiVisible = savedInstance.getBoolean(SAVED_HI_VISIBLE);
+        }
+
         updateUI();
 
         return view;
@@ -121,6 +156,8 @@ public class ListingListFragment extends Fragment {
         }
 
         updateSubtitle();
+        updateHi();
+
     }
 
     private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
