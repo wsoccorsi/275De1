@@ -9,7 +9,7 @@ public class ListingDBSchema {
             public static final String TITLE = "title";
             public static final String DATE = "date";
             public static final String SOLD = "sold";
-            public static final String DESC = "desc";
+            public static final String DESC = "desco";
             public static final String PRICE = "price";
 
         }

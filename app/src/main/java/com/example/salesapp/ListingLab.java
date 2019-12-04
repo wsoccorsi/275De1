@@ -72,6 +72,7 @@ public class ListingLab {
         values.put(ListingDBSchema.ListingTable.Cols.TITLE, listing.getmTitle());
         values.put(ListingDBSchema.ListingTable.Cols.DATE, listing.getmDate().getTime());
         values.put(ListingDBSchema.ListingTable.Cols.SOLD, listing.ismSold() ? 1 : 0);
+
         values.put(ListingDBSchema.ListingTable.Cols.DESC, listing.getmDesc());
         values.put(ListingDBSchema.ListingTable.Cols.PRICE, listing.getmPrice());
 
