@@ -224,7 +224,7 @@ public class ListingListFragment extends Fragment {
 
         public void setListings(List<Listing> listings) {
             mListings = listings;
-            System.out.println("check here in setListings" + listings.get(0).getmId());
+//            System.out.println("check here in setListings" + listings.get(0).getmId());
         }
     }
 

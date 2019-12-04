@@ -72,6 +72,9 @@ public class ListingLab {
         values.put(ListingDBSchema.ListingTable.Cols.TITLE, listing.getmTitle());
         values.put(ListingDBSchema.ListingTable.Cols.DATE, listing.getmDate().getTime());
         values.put(ListingDBSchema.ListingTable.Cols.SOLD, listing.ismSold() ? 1 : 0);
+        values.put(ListingDBSchema.ListingTable.Cols.DESC, listing.getmDesc());
+        values.put(ListingDBSchema.ListingTable.Cols.PRICE, listing.getmPrice());
+
 
         return values;
 
@@ -81,6 +84,16 @@ public class ListingLab {
     ContentValues values = getContentValues(l);
     mDatabase.insert(ListingDBSchema.ListingTable.NAME, null, values);
     }
+
+    public int deleteListing(Listing listing) {
+        String uuidString = listing.getmId().toString();
+        return mDatabase.delete(
+                ListingDBSchema.ListingTable.NAME,
+                ListingDBSchema.ListingTable.Cols.UUID + " = ?",
+                new String[] { uuidString }
+        );
+    }
+
 
     public List<Listing> getListings() {
         List<Listing> listings = new ArrayList<>();
@@ -96,7 +109,7 @@ public class ListingLab {
         } finally {
             cursor.close();
         }
-        System.out.println("LISTINGS " + listings);
+//        System.out.println("LISTINGS " + listings.get(0).);
         return listings;
     }
 

@@ -24,7 +24,10 @@ public class ListingBaseHelper extends SQLiteOpenHelper {
                 ListingTable.Cols.UUID + ", " +
                 ListingTable.Cols.TITLE + ", " +
                 ListingTable.Cols.DATE + ", " +
-                ListingTable.Cols.SOLD + ")"
+                ListingTable.Cols.SOLD + ", " +
+                ListingTable.Cols.PRICE + ", " +
+                ListingTable.Cols.DESC + ")"
+
         );
     }
 
