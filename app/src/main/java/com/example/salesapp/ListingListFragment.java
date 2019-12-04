@@ -25,6 +25,8 @@ import java.util.List;
 public class ListingListFragment extends Fragment {
     private RecyclerView mListingRecyclerView;
     private ListingAdapter mAdapter;
+    private boolean mSubtitleVisible;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +40,26 @@ public class ListingListFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_listing_list, menu);
-    }
 
+
+        MenuItem subtitleItem = menu.findItem(R.id.show_subtitle);
+        if (mSubtitleVisible){
+            subtitleItem.setTitle(R.string.hide_subtitle);
+        } else {
+            subtitleItem.setTitle(R.string.show_subtitle);
+        }
+
+    }
+    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
@@ -53,6 +70,8 @@ public class ListingListFragment extends Fragment {
                 startActivity(intent);
                 return true;
             case R.id.show_subtitle:
+                mSubtitleVisible = !mSubtitleVisible;
+                getActivity().invalidateOptionsMenu();
                 updateSubtitle();
                 return true;
             default:
@@ -64,6 +83,11 @@ public class ListingListFragment extends Fragment {
         ListingLab listingLab = ListingLab.get(getActivity());
         int listingCount = listingLab.getListings().size();
         String subtitle = getString(R.string.subtitle_format, listingCount);
+
+        if (!mSubtitleVisible) {
+            subtitle = null;
+        }
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.getSupportActionBar().setSubtitle(subtitle);
 
@@ -77,6 +101,9 @@ public class ListingListFragment extends Fragment {
         mListingRecyclerView = (RecyclerView) view.findViewById(R.id.listing_recycler_view);
         mListingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        if (savedInstance != null) {
+            mSubtitleVisible = savedInstance.getBoolean(SAVED_SUBTITLE_VISIBLE);
+        }
         updateUI();
 
         return view;
@@ -91,6 +118,8 @@ public class ListingListFragment extends Fragment {
         } else {
             mAdapter.notifyDataSetChanged();
         }
+
+        updateSubtitle();
     }
 
     private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -156,6 +185,8 @@ public class ListingListFragment extends Fragment {
             return mListings.size();
         }
     }
+
+
 
 
 }
