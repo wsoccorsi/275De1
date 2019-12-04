@@ -12,19 +12,20 @@ import java.util.UUID;
 
 public class MainActivity extends SingleFragmentActivity {
 
-    public static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
+    private static final String EXTRA_LISTING_ID = "com.bignerdranch.android.salesapp.listing_id";
 
     public static Intent newIntent(Context packageContext, UUID crimeID) {
 
         Intent intent = new Intent(packageContext, MainActivity.class);
-        intent.putExtra(EXTRA_CRIME_ID, crimeID);
+        intent.putExtra(EXTRA_LISTING_ID, crimeID);
         return intent;
 
     }
 
     @Override
     protected Fragment createFragment() {
-        return new ListingFragment();
+        UUID listingId = (UUID) getIntent().getSerializableExtra(EXTRA_LISTING_ID);
+        return ListingFragment.newInstance(listingId);
     }
 
 }

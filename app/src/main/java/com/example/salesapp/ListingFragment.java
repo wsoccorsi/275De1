@@ -19,6 +19,7 @@ import java.util.UUID;
 
 public class ListingFragment extends Fragment {
 
+    private static final String ARG_LISTING_ID = "listing_id";
     private Listing mListing;
     private TextView mTitleField;
     private Button mDateButton;
@@ -26,10 +27,21 @@ public class ListingFragment extends Fragment {
     private TextView mSold;
     private TextView mDesc;
     private TextView mPrice;
+
+    public static ListingFragment newInstance(UUID listingID){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_LISTING_ID, listingID);
+
+        ListingFragment fragment = new ListingFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        UUID listingId = (UUID) getActivity().getIntent().getSerializableExtra(MainActivity.EXTRA_CRIME_ID);
+//        UUID listingId = (UUID) getActivity().getIntent().getSerializableExtra(MainActivity.EXTRA_LISTING_ID);
+        UUID listingId = (UUID) getArguments().getSerializable(ARG_LISTING_ID);
         mListing = ListingLab.get(getActivity()).getListing(listingId);
     }
 

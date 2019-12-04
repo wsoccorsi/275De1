@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,10 +32,43 @@ public class ListingListFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_listing_list, menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.new_listing:
+                Listing listing = new Listing();
+                ListingLab.get(getActivity()).addListing(listing);
+                Intent intent = ListingPagerActivity.newIntent(getActivity(), listing.getmId());
+                startActivity(intent);
+                return true;
+            case R.id.show_subtitle:
+                updateSubtitle();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateSubtitle() {
+        ListingLab listingLab = ListingLab.get(getActivity());
+        int listingCount = listingLab.getListings().size();
+        String subtitle = getString(R.string.subtitle_format, listingCount);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(subtitle);
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
@@ -50,8 +85,12 @@ public class ListingListFragment extends Fragment {
         ListingLab listingLab = ListingLab.get(getActivity());
         List<Listing> listings = listingLab.getListings();
 
-        mAdapter = new ListingAdapter(listings);
-        mListingRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new ListingAdapter(listings);
+            mListingRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private class ListingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -89,7 +128,7 @@ public class ListingListFragment extends Fragment {
         }
         @Override
         public void onClick(View view){
-            Intent intent = MainActivity.newIntent(getActivity(), mListing.getmId());
+            Intent intent = ListingPagerActivity.newIntent(getActivity(), mListing.getmId());
             startActivity(intent);
         }
     }
