@@ -2,6 +2,7 @@ package com.example.salesapp;
 
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.nio.channels.Pipe;
 import java.util.ArrayList;
@@ -10,7 +11,9 @@ import java.util.UUID;
 
 public class ListingLab {
     private static ListingLab sListingLab;
-    private List<Listing>  mListings;
+//    private List<Listing>  mListings;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static ListingLab get(Context context) {
         if (sListingLab == null) {
@@ -20,24 +23,26 @@ public class ListingLab {
     }
 
     public Listing getListing(UUID id){
-        for (Listing listing : mListings){
-            if (listing.getmId().equals(id)){
-                return listing;
-            }
-        }
+//        for (Listing listing : mListings){
+//            if (listing.getmId().equals(id)){
+//                return listing;
+//            }
+//        }
         return null;
     }
 
     public void addListing(Listing l){
-        mListings.add(l);
+//        mListings.add(l);
     }
 
     public List<Listing> getListings() {
-        return mListings;
+//        return mListings;
     }
 
     private ListingLab(Context context) {
-        mListings = new ArrayList<>();
+        mContext = context.getApplicationContext();
+        mDatabase = new ListingBaseHelper(mContext).getWritableDatabase();
+//        mListings = new ArrayList<>();
 
 //        for (int i = 1; i < 100; i++){
 //            Listing listing = new Listing();
