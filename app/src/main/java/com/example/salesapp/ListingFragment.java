@@ -91,15 +91,16 @@ public class ListingFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         mDesc = (EditText) v.findViewById(R.id.listing_desc);
-        mDesc.setText("  Desc: " + mListing.getmDesc());
+        mDesc.setText(mListing.getmDesc());
 
         mPrice = (EditText) v.findViewById(R.id.listing_price);
-        mPrice.setText("  Price " + mListing.getmPrice());
+        mPrice.setText(mListing.getmPrice());
 
 //        mSold = (TextView) v.findViewById(R.id.listing_textSold);
         mSoldCheckBox = (CheckBox)v.findViewById(R.id.listing_sold);
         System.out.println("is sold" + mListing.ismSold());
         mSoldCheckBox.setSelected(mListing.ismSold());
+        mSoldCheckBox.setChecked(mListing.ismSold());
 //        if (mListing.ismSold()) {
 //            mSold.setText("  Status: Sorry this item has been sold");
 //        } else {
@@ -113,7 +114,7 @@ public class ListingFragment extends Fragment {
         });
 
         mTitleField = (EditText) v.findViewById(R.id.listing_title);
-        mTitleField.setText("  " + mListing.getmTitle());
+        mTitleField.setText(mListing.getmTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

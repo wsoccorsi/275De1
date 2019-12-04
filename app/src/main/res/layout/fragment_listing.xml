@@ -16,7 +16,8 @@
         android:id="@+id/listing_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/listing_title_hint"/>
+        android:hint="@string/listing_title_hint"
+        />
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
@@ -28,13 +29,15 @@
         android:id="@+id/listing_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/listing_desc_label"/>
+        android:text="@string/listing_desc_label"
+        android:hint="Enter Description"/>
 
     <EditText
         android:id="@+id/listing_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/listing_price_label"/>
+        android:text="@string/listing_price_label"
+        android:hint="Enter Price"/>
 
     <Button
         android:id="@+id/listing_date"

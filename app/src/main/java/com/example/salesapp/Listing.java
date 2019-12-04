@@ -23,8 +23,9 @@ public class Listing {
 
     public Listing(UUID id ){
         mId = id;
-//        System.out.println("constructor called " + this(UUID));
-
+        mDesc = "";
+        mPrice = "$";
+        mTitle = "";
         mDate = new Date();
     }
 
