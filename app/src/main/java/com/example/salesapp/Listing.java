@@ -17,7 +17,14 @@ public class Listing {
 
 
     public Listing() {
-        mId = UUID.randomUUID();
+
+        this(UUID.randomUUID());
+    }
+
+    public Listing(UUID id ){
+        mId = id;
+//        System.out.println("constructor called " + this(UUID));
+
         mDate = new Date();
     }
 
@@ -92,4 +99,5 @@ public class Listing {
     public void setmTitle(String mTitle) {
         this.mTitle = mTitle;
     }
+
 }

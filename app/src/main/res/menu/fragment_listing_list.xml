@@ -13,4 +13,9 @@
         android:title="@string/show_subtitle"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/show_hi"
+        android:title="@string/hi_format"
+        app:showAsAction="ifRoom" />
+
 </menu>

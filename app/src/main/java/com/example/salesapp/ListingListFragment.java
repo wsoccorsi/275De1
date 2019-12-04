@@ -116,6 +116,7 @@ public class ListingListFragment extends Fragment {
             mAdapter = new ListingAdapter(listings);
             mListingRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setListings(listings);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -145,8 +146,7 @@ public class ListingListFragment extends Fragment {
         public void bind(Listing listing) {
 
             mListing = listing;
-            System.out.println(mListing.getmId());
-
+            System.out.println("on screen date " + mListing.getmDate() + "on screen id " + mListing.getmId() );
             mTitleTextView.setText(mListing.getmTitle());
             mDescTextView.setText(mListing.getmDesc());
             mPriceTextView.setText(mListing.getmPrice());
@@ -183,6 +183,11 @@ public class ListingListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mListings.size();
+        }
+
+        public void setListings(List<Listing> listings) {
+            mListings = listings;
+            System.out.println("check here in setListings" + listings.get(0).getmId());
         }
     }
 

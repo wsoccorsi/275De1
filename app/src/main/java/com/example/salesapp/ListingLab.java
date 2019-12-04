@@ -1,7 +1,9 @@
 package com.example.salesapp;
 
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.nio.channels.Pipe;
@@ -23,20 +25,79 @@ public class ListingLab {
     }
 
     public Listing getListing(UUID id){
-//        for (Listing listing : mListings){
-//            if (listing.getmId().equals(id)){
-//                return listing;
-//            }
-//        }
-        return null;
+        ListingCursorWrapper cursor = queryListings(
+                ListingDBSchema.ListingTable.Cols.UUID + " = ?",
+                new String[] { id.toString() }
+        );
+
+        try {
+            if (cursor.getCount() == 0){
+                return null;
+            }
+
+            cursor.moveToFirst();
+            return cursor.getListing();
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void updateListing(Listing listing){
+        String uuidString = listing.getmId().toString();
+        ContentValues values = getContentValues(listing);
+
+        mDatabase.update(ListingDBSchema.ListingTable.NAME, values,
+                ListingDBSchema.ListingTable.Cols.UUID + " = ?",
+                new String[] { uuidString });
+
+    }
+
+    private ListingCursorWrapper queryListings(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                ListingDBSchema.ListingTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+
+        return new ListingCursorWrapper(cursor);
+    }
+
+    private static ContentValues getContentValues(Listing listing) {
+        ContentValues values = new ContentValues();
+        values.put(ListingDBSchema.ListingTable.Cols.UUID, listing.getmId().toString());
+        values.put(ListingDBSchema.ListingTable.Cols.TITLE, listing.getmTitle());
+        values.put(ListingDBSchema.ListingTable.Cols.DATE, listing.getmDate().getTime());
+        values.put(ListingDBSchema.ListingTable.Cols.SOLD, listing.ismSold() ? 1 : 0);
+
+        return values;
+
     }
 
     public void addListing(Listing l){
-//        mListings.add(l);
+    ContentValues values = getContentValues(l);
+    mDatabase.insert(ListingDBSchema.ListingTable.NAME, null, values);
     }
 
     public List<Listing> getListings() {
-//        return mListings;
+        List<Listing> listings = new ArrayList<>();
+
+        ListingCursorWrapper cursor = queryListings(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                listings.add(cursor.getListing());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        System.out.println("LISTINGS " + listings);
+        return listings;
     }
 
     private ListingLab(Context context) {
@@ -55,5 +116,6 @@ public class ListingLab {
 //            mListings.add(listing);
 //        }
     }
+
 
 }

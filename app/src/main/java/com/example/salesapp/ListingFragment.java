@@ -42,7 +42,19 @@ public class ListingFragment extends Fragment {
         super.onCreate(savedInstanceState);
 //        UUID listingId = (UUID) getActivity().getIntent().getSerializableExtra(MainActivity.EXTRA_LISTING_ID);
         UUID listingId = (UUID) getArguments().getSerializable(ARG_LISTING_ID);
+        System.out.println("Checking this ID " + listingId);
         mListing = ListingLab.get(getActivity()).getListing(listingId);
+//        System.out.println(mListing.getmId());
+//
+//        System.exit(0);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        ListingLab.get(getActivity()).updateListing(mListing);
     }
 
     @Override
@@ -89,6 +101,7 @@ public class ListingFragment extends Fragment {
 
             }
         });
+
 
         return v;
     }
