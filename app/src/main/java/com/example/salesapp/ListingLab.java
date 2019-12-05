@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
 import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,11 @@ public class ListingLab {
 //    private List<Listing>  mListings;
     private Context mContext;
     private SQLiteDatabase mDatabase;
+
+    public File getPhotoFile(Listing listing){
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, listing.getPhotoFilename());
+    }
 
     public static ListingLab get(Context context) {
         if (sListingLab == null) {
@@ -87,11 +93,11 @@ public class ListingLab {
     }
 
     public int deleteListing(Listing listing) {
-        String uuidString = listing.getmId().toString();
+        //https://stackoverflow.com/questions/7510219/deleting-row-in-sqlite-in-android
+//        System.exit(0);
         return mDatabase.delete(
-                ListingDBSchema.ListingTable.NAME,
-                ListingDBSchema.ListingTable.Cols.UUID + " = ?",
-                new String[] { uuidString }
+                ListingDBSchema.ListingTable.NAME, ListingDBSchema.ListingTable.Cols.UUID + "=" +"'"+ listing.getmId().toString()+"'" ,
+                null
         );
     }
 

@@ -71,7 +71,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/chair"
+        app:srcCompat="@drawable/ic_menu_new_view"
         tools:layout_editor_absoluteY="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

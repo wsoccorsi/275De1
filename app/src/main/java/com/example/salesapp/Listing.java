@@ -98,7 +98,12 @@ public class Listing {
     }
 
     public void setmTitle(String mTitle) {
+
         this.mTitle = mTitle;
+    }
+
+    public String getPhotoFilename() {
+        return "IMG_" + getmId().toString() + ".jpg";
     }
 
 }

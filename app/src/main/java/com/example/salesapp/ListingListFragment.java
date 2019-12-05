@@ -167,6 +167,8 @@ public class ListingListFragment extends Fragment {
         private TextView mPriceTextView;
 
         private ImageView mSoldImageView;
+        private ImageView mListingImageView;
+
         private Listing mListing;
 
         public ListingHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -177,6 +179,10 @@ public class ListingListFragment extends Fragment {
             mDescTextView = (TextView) itemView.findViewById(R.id.listing_desc);
             mPriceTextView = (TextView) itemView.findViewById(R.id.listing_price);
             mSoldImageView = (ImageView) itemView.findViewById(R.id.listing_sold);
+            mListingImageView = (ImageView) itemView.findViewById(R.id.listing_photo);
+
+
+
 
         }
 
@@ -189,6 +195,7 @@ public class ListingListFragment extends Fragment {
             mPriceTextView.setText("Price: $" + mListing.getmPrice());
             mDateTextView.setText("Posted: " + mListing.getmDate().toString());
             mSoldImageView.setVisibility(listing.ismSold() ? View.VISIBLE : View.GONE);
+//            mListingImageView.setVisibility(View.VISIBLE);
 
 
         }
